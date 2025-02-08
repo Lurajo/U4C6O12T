@@ -11,6 +11,29 @@ int main()
     // Inicialização dos componentes padrão
     stdio_init_all();
 
+    // Inicialização da Interface Serial I2C
+    i2c_init(OLED_I2C_HARDWARE_BLOCK, OLED_DISPLAY_BAUD_RATE);
+
+    gpio_set_function(OLED_DISPLAY_SDA_PIN, GPIO_FUNC_I2C);
+    gpio_set_function(OLED_DISPLAY_SCL_PIN, GPIO_FUNC_I2C);
+
+    gpio_pull_up(OLED_DISPLAY_SDA_PIN);
+    gpio_pull_up(OLED_DISPLAY_SCL_PIN);
+
+    // Inicialização do Display OLED
+    ssd1306_init(&ssd1306, OLED_DISPLAY_WIDTH, OLED_DISPLAY_HEIGHT, false, OLED_DISPLAY_I2C_ADDRESS, OLED_I2C_HARDWARE_BLOCK);
+    ssd1306_config(&ssd1306);
+    ssd1306_send_data(&ssd1306);
+
+    // Inserção de dados no Display OLED
+    ssd1306_fill(&ssd1306, false);
+
+    ssd1306_draw_string(&ssd1306, "GREEN     0", 0, 10);
+    ssd1306_draw_string(&ssd1306, "BLUE      0", 0, 30);
+    ssd1306_draw_string(&ssd1306, "CHARACTER 0", 0, 50);
+
+    ssd1306_send_data(&ssd1306);
+
     // Inicialização da matriz de LEDs
     led_matrix_program_init(LED_MATRIX_PIO, STATE_MACHINE, memory_offset, LED_MATRIX_PIN);
     set_led_matrix_data(NO_COLOR, base_matrix);

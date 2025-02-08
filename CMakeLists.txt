@@ -39,7 +39,6 @@ add_executable(
     bitdoglab_display
     main.c 
     src/bitdoglab.c
-    src/ssd1306.c
 )
 
 pico_set_program_name(bitdoglab_display "U4C6O12T")
