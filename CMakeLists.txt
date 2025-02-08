@@ -39,6 +39,7 @@ add_executable(
     bitdoglab_display
     main.c 
     src/bitdoglab.c
+    src/ssd1306.c
 )
 
 pico_set_program_name(bitdoglab_display "U4C6O12T")
@@ -52,6 +53,7 @@ pico_enable_stdio_usb(bitdoglab_display 1)
 target_link_libraries(
     bitdoglab_display
     pico_stdlib
+    hardware_i2c
     hardware_pio
 )
 

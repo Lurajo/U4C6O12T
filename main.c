@@ -15,6 +15,13 @@ int main()
     led_matrix_program_init(LED_MATRIX_PIO, STATE_MACHINE, memory_offset, LED_MATRIX_PIN);
     set_led_matrix_data(NO_COLOR, base_matrix);
 
+    // Inicialização dos pinos verde e zauldo LED RGB
+    gpio_init(GREEN_LED_PIN);
+    gpio_set_dir(GREEN_LED_PIN, GPIO_OUT);
+
+    gpio_init(BLUE_LED_PIN);
+    gpio_set_dir(BLUE_LED_PIN, GPIO_OUT);
+
     // Inicialização dos botões A e B
     gpio_init(A_BUTTON_PIN);
     gpio_set_dir(A_BUTTON_PIN, GPIO_IN);

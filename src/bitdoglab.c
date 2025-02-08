@@ -81,7 +81,7 @@ inline void set_matrix_design(unsigned char counter)
     set_led_matrix_data(DIM_WHITE_COLOR, matrix_design);
 }
 
-// Função callback para a interrupção gerado pelos botões A ou B
+// Função callback para a interrupção gerada pelos botões A ou B
 inline void gpio_irq_callback(unsigned int gpio, unsigned long events)
 {
     unsigned long current_event_time = CURRENT_TIME;
@@ -91,31 +91,17 @@ inline void gpio_irq_callback(unsigned int gpio, unsigned long events)
         switch (gpio)
         {
         case A_BUTTON_PIN:
-            counter++;
-
-            if (counter > 9)
-            {
-                counter = 9;
-            }
-
+            gpio_put(GREEN_LED_PIN, !gpio_get(GREEN_LED_PIN));
             break;
 
         case B_BUTTON_PIN:
-            counter--;
-
-            if (counter > 9)
-            {
-                counter = 0;
-            }
-
+            gpio_put(BLUE_LED_PIN, !gpio_get(BLUE_LED_PIN));
             break;
 
         default:
             break;
         }
     }
-
-    set_matrix_design(counter);
 
     last_event_time = CURRENT_TIME;
 }

@@ -3,6 +3,7 @@
 
 // Blibiotecas utilizadas
 #include "lib/led_matrix.pio.h"
+#include "lib/ssd1306.h"
 
 #include "pico/stdlib.h"
 #include "hardware/pio.h"
@@ -33,6 +34,8 @@
 // Constantes para PIO
 #define STATE_MACHINE 0
 #define LED_MATRIX_PIO pio0
+
+#define I2C_HARDWARE_BLOCK i2c1
 
 // Constantes de tempo
 #define DELAY_TIME 100
