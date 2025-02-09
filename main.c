@@ -28,9 +28,9 @@ int main()
     // Inserção de dados no Display OLED
     ssd1306_fill(&ssd1306, false);
 
-    ssd1306_draw_string(&ssd1306, "GREEN     0", 0, 10);
-    ssd1306_draw_string(&ssd1306, "BLUE      0", 0, 30);
-    ssd1306_draw_string(&ssd1306, "CHARACTER 0", 0, 50);
+    ssd1306_draw_string(&ssd1306, green_string, 0, 10);
+    ssd1306_draw_string(&ssd1306, blue_string, 0, 30);
+    ssd1306_draw_string(&ssd1306, character_string, 0, 50);
 
     ssd1306_send_data(&ssd1306);
 
@@ -65,6 +65,14 @@ int main()
         if (stdio_usb_connected() && scanf("%c", &character) == 1)
         {
             set_matrix_design(character);
+
+            character_string[10] = character;
+
+            ssd1306_draw_string(&ssd1306, green_string, 0, 10);
+            ssd1306_draw_string(&ssd1306, blue_string, 0, 30);
+            ssd1306_draw_string(&ssd1306, character_string, 0, 50);
+
+            ssd1306_send_data(&ssd1306);
         }
     }
 

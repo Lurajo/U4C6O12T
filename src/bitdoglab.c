@@ -75,6 +75,7 @@ inline void set_matrix_design(unsigned char character)
         break;
 
     default:
+        matrix_design = base_matrix;
         break;
     }
 
@@ -97,7 +98,16 @@ inline void gpio_irq_callback(unsigned int gpio, unsigned long events)
             rgb_led_pin = GREEN_LED_PIN;
             rgb_led_pin_state = !gpio_get(rgb_led_pin);
 
-            printf("GREEN     %d\n", rgb_led_pin_state);
+            if (rgb_led_pin_state)
+            {
+                green_string[10] = '1';
+            }
+            else
+            {
+                green_string[10] = '0';
+            }
+
+            printf("%s\n", green_string);
 
             break;
 
@@ -105,7 +115,16 @@ inline void gpio_irq_callback(unsigned int gpio, unsigned long events)
             rgb_led_pin = BLUE_LED_PIN;
             rgb_led_pin_state = !gpio_get(rgb_led_pin);
 
-            printf("BLUE      %d\n", rgb_led_pin_state);
+            if (rgb_led_pin_state)
+            {
+                blue_string[10] = '1';
+            }
+            else
+            {
+                blue_string[10] = '0';
+            }
+
+            printf("%s\n", blue_string);
 
             break;
 

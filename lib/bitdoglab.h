@@ -83,7 +83,11 @@ typedef struct ssd1306
 
 // Variáveis globais
 static unsigned long last_event_time;
-static unsigned char character;
+static char character;
+
+static char green_string[] = "GREEN      ";
+static char blue_string[] = "BLUE       ";
+static char character_string[] = "CHARACTER  ";
 
 static ssd1306_t ssd1306;
 
