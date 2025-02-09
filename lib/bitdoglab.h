@@ -85,8 +85,11 @@ typedef struct ssd1306
 static unsigned long last_event_time;
 static char character;
 
-static char green_string[] = "Green:      ";
-static char blue_string[] = "Blue:       ";
+static unsigned char rgb_led_pin_state = 0;
+static unsigned char rgb_led_pin = RED_LED_PIN;
+
+static char green_string[] = "Green:     0";
+static char blue_string[] = "Blue:      0";
 static char character_string[] = "Character:  ";
 
 static ssd1306_t ssd1306;

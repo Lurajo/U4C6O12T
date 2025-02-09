@@ -71,9 +71,9 @@ int main()
 
             ssd1306_draw_string(&ssd1306, character_string, 0, 50);
             set_matrix_design(character);
-        }
 
-        ssd1306_send_data(&ssd1306);
+            ssd1306_send_data(&ssd1306);
+        }
     }
 
     return 0;

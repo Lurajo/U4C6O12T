@@ -87,9 +87,6 @@ inline void gpio_irq_callback(unsigned int gpio, unsigned long events)
 {
     unsigned long current_event_time = CURRENT_TIME;
 
-    unsigned char rgb_led_pin_state;
-    unsigned char rgb_led_pin;
-
     if (current_event_time - last_event_time > DEBOUNCE_TIME)
     {
         switch (gpio)
