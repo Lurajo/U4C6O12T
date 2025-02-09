@@ -61,7 +61,11 @@ int main()
     // Loop principal
     while (true)
     {
-        tight_loop_contents();
+        // Caso conectado via USB e um caracter foi recebido, atualize a matriz de LEDs
+        if (stdio_usb_connected() && scanf("%c", &character) == 1)
+        {
+            set_matrix_design(character);
+        }
     }
 
     return 0;

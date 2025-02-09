@@ -20,7 +20,7 @@
 
 // Constantes de cores
 #define NO_COLOR 0x00000000
-#define DIM_WHITE_COLOR 0x00080808
+#define DIM_WHITE_COLOR 0x00040404
 
 // Pinos utilizados
 #define A_BUTTON_PIN 5
@@ -83,7 +83,7 @@ typedef struct ssd1306
 
 // Variáveis globais
 static unsigned long last_event_time;
-static unsigned char counter = 0;
+static unsigned char character;
 
 static ssd1306_t ssd1306;
 
@@ -208,13 +208,15 @@ static unsigned char font_set[] = {
 };
 
 // Declaração das funções básicas
+
 extern unsigned long get_color_data(unsigned long color);
 extern void pio_write_data(PIO pio, unsigned int state_machine, unsigned long color_data);
 extern void set_led_matrix_data(unsigned long color, const unsigned char *matrix_design);
-extern void set_matrix_design(unsigned char counter);
+extern void set_matrix_design(unsigned char character);
 extern void gpio_irq_callback(unsigned int gpio, unsigned long events);
 
 // Declaração das funções do Display OLED
+
 void ssd1306_init(ssd1306_t *ssd, unsigned char width, unsigned char height, bool external_vcc, unsigned char address, i2c_inst_t *i2c);
 void ssd1306_config(ssd1306_t *ssd);
 void ssd1306_command(ssd1306_t *ssd, unsigned char command);

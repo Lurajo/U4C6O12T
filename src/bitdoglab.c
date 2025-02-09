@@ -28,49 +28,49 @@ inline void set_led_matrix_data(unsigned long color, const unsigned char *matrix
     }
 }
 
-// Identifica o design a ser utilizado com base no contador global
-inline void set_matrix_design(unsigned char counter)
+// Identifica o design a ser utilizado com base no caractere recebido
+inline void set_matrix_design(unsigned char character)
 {
     static const unsigned char *matrix_design;
 
-    switch (counter)
+    switch (character)
     {
-    case 0:
+    case '0':
         matrix_design = zero_matrix;
         break;
 
-    case 1:
+    case '1':
         matrix_design = one_matrix;
         break;
 
-    case 2:
+    case '2':
         matrix_design = two_matrix;
         break;
-    case 3:
+    case '3':
         matrix_design = three_matrix;
         break;
 
-    case 4:
+    case '4':
         matrix_design = four_matrix;
         break;
 
-    case 5:
+    case '5':
         matrix_design = five_matrix;
         break;
 
-    case 6:
+    case '6':
         matrix_design = six_matrix;
         break;
 
-    case 7:
+    case '7':
         matrix_design = seven_matrix;
         break;
 
-    case 8:
+    case '8':
         matrix_design = eight_matrix;
         break;
 
-    case 9:
+    case '9':
         matrix_design = nine_matrix;
         break;
 
@@ -118,6 +118,8 @@ inline void gpio_irq_callback(unsigned int gpio, unsigned long events)
         last_event_time = CURRENT_TIME;
     }
 }
+
+// Funções do Display OLED
 
 void ssd1306_init(ssd1306_t *ssd, unsigned char width, unsigned char height, bool external_vcc, unsigned char address, i2c_inst_t *i2c)
 {
