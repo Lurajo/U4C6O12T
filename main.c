@@ -38,7 +38,10 @@ int main()
     led_matrix_program_init(LED_MATRIX_PIO, STATE_MACHINE, memory_offset, LED_MATRIX_PIN);
     set_led_matrix_data(NO_COLOR, base_matrix);
 
-    // Inicialização dos pinos verde e zauldo LED RGB
+    // Inicialização dos pinos do LED
+    gpio_init(RED_LED_PIN);
+    gpio_set_dir(RED_LED_PIN, GPIO_OUT);
+
     gpio_init(GREEN_LED_PIN);
     gpio_set_dir(GREEN_LED_PIN, GPIO_OUT);
 
@@ -61,17 +64,16 @@ int main()
     // Loop principal
     while (true)
     {
-        // Caso conectado via USB e um caracter foi recebido, atualize a matriz de LEDs
+        // Caso conectado via USB, atualize o Display OLED
         if (stdio_usb_connected() && scanf("%c", &character) == 1)
         {
-            set_matrix_design(character);
-
             character_string[11] = character;
 
             ssd1306_draw_string(&ssd1306, character_string, 0, 50);
-
-            ssd1306_send_data(&ssd1306);
+            set_matrix_design(character);
         }
+
+        ssd1306_send_data(&ssd1306);
     }
 
     return 0;

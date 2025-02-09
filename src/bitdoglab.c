@@ -129,6 +129,9 @@ inline void gpio_irq_callback(unsigned int gpio, unsigned long events)
             break;
 
         default:
+            rgb_led_pin = RED_LED_PIN;
+            rgb_led_pin_state = !gpio_get(rgb_led_pin);
+
             break;
         }
 
