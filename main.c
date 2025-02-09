@@ -66,10 +66,8 @@ int main()
         {
             set_matrix_design(character);
 
-            character_string[10] = character;
+            character_string[11] = character;
 
-            ssd1306_draw_string(&ssd1306, green_string, 0, 10);
-            ssd1306_draw_string(&ssd1306, blue_string, 0, 30);
             ssd1306_draw_string(&ssd1306, character_string, 0, 50);
 
             ssd1306_send_data(&ssd1306);

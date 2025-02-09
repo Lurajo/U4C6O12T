@@ -100,11 +100,11 @@ inline void gpio_irq_callback(unsigned int gpio, unsigned long events)
 
             if (rgb_led_pin_state)
             {
-                green_string[10] = '1';
+                green_string[11] = '1';
             }
             else
             {
-                green_string[10] = '0';
+                green_string[11] = '0';
             }
 
             printf("%s\n", green_string);
@@ -117,11 +117,11 @@ inline void gpio_irq_callback(unsigned int gpio, unsigned long events)
 
             if (rgb_led_pin_state)
             {
-                blue_string[10] = '1';
+                blue_string[11] = '1';
             }
             else
             {
-                blue_string[10] = '0';
+                blue_string[11] = '0';
             }
 
             printf("%s\n", blue_string);
@@ -211,7 +211,7 @@ void ssd1306_send_data(ssd1306_t *ssd)
 
 void ssd1306_pixel(ssd1306_t *ssd, unsigned char x, unsigned char y, bool value)
 {
-    uint16_t index = (y >> 3) + (x << 3) + 1;
+    unsigned short index = (y >> 3) + (x << 3) + 1;
     unsigned char pixel = (y & 0b111);
     if (value)
         ssd->ram_buffer[index] |= (1 << pixel);
@@ -303,20 +303,22 @@ void ssd1306_vline(ssd1306_t *ssd, unsigned char x, unsigned char y0, unsigned c
 
 void ssd1306_draw_char(ssd1306_t *ssd, char c, unsigned char x, unsigned char y)
 {
-    uint16_t index = 0;
+    unsigned short index = 0;
     char ver = c;
-    if (c >= 'A' && c <= 'Z')
+
+    if (c >= ' ' && c <= '~')
     {
-        index = (c - 'A' + 11) * 8;
+        index = (c - ' ') * 8;
     }
-    else if (c >= '0' && c <= '9')
+    else
     {
-        index = (c - '0' + 1) * 8;
+        index = 0;
     }
 
     for (unsigned char i = 0; i < 8; ++i)
     {
         unsigned char line = font_set[index + i];
+
         for (unsigned char j = 0; j < 8; ++j)
         {
             ssd1306_pixel(ssd, x + i, y + j, line & (1 << j));
